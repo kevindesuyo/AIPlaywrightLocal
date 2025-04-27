@@ -6,7 +6,8 @@ such as entering text into a form, waiting for and clicking a selector, etc.
 """
 
 from typing import Dict, Any, Optional, Type
-from langchain.tools.base import BaseTool, ToolException
+from langchain_core.tools import BaseTool
+from langchain_core.exceptions import ToolException
 from langchain_community.tools.playwright.utils import create_sync_playwright_browser, get_current_page
 
 class FormInputTool(BaseTool):
