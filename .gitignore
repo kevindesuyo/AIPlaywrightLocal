@@ -4,6 +4,7 @@ env/
 ENV/
 .env
 .venv
+venv311
 
 # Python関連
 __pycache__/

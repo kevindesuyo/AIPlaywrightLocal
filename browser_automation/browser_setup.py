@@ -9,7 +9,22 @@ async def initialize_browser(headless=True):
     """
     print(f"Initializing Playwright browser (headless={headless})...")
     playwright = await async_playwright().start()
-    browser = await playwright.chromium.launch(headless=headless)
+    
+    # 追加のオプションを設定
+    browser_options = {
+        "headless": headless,
+        "args": [
+            "--disable-gpu",
+            "--disable-dev-shm-usage",
+            "--disable-setuid-sandbox",
+            "--no-first-run",
+            "--no-sandbox",
+            "--no-zygote",
+            "--single-process"
+        ]
+    }
+    
+    browser = await playwright.chromium.launch(**browser_options)
     context = await browser.new_context()
     page = await context.new_page()
     

@@ -7,7 +7,9 @@ such as entering text into a form, waiting for and clicking a selector, etc.
 
 from typing import Dict, Any, Optional, Type
 from langchain.tools.base import BaseTool, ToolException
-from langchain_community.tools.playwright.utils import create_sync_playwright_browser, get_current_page
+
+# カスタムユーティリティをインポート
+from .playwright_utils import create_custom_sync_playwright_browser, get_current_page
 
 class FormInputTool(BaseTool):
     """Tool to enter text into a form field."""
@@ -19,7 +21,7 @@ class FormInputTool(BaseTool):
     def __init__(self, sync_browser=None):
         """Initialize the tool with a synchronous browser instance."""
         super().__init__()
-        self.sync_browser = sync_browser or create_sync_playwright_browser()
+        self.sync_browser = sync_browser or create_custom_sync_playwright_browser()
     
     def _run(self, selector: str, text: str) -> str:
         """Run the tool to enter text into a form field.
@@ -58,7 +60,7 @@ class WaitAndClickTool(BaseTool):
     def __init__(self, sync_browser=None):
         """Initialize the tool with a synchronous browser instance."""
         super().__init__()
-        self.sync_browser = sync_browser or create_sync_playwright_browser()
+        self.sync_browser = sync_browser or create_custom_sync_playwright_browser()
     
     def _run(self, selector: str, timeout: int = 30000) -> str:
         """Run the tool to wait for and click an element.
@@ -98,7 +100,7 @@ class WaitForNavigationTool(BaseTool):
     def __init__(self, sync_browser=None):
         """Initialize the tool with a synchronous browser instance."""
         super().__init__()
-        self.sync_browser = sync_browser or create_sync_playwright_browser()
+        self.sync_browser = sync_browser or create_custom_sync_playwright_browser()
     
     def _run(self, action_description: str, timeout: int = 30000) -> str:
         """Run the tool to wait for navigation to complete.
@@ -137,7 +139,7 @@ class SelectDropdownOptionTool(BaseTool):
     def __init__(self, sync_browser=None):
         """Initialize the tool with a synchronous browser instance."""
         super().__init__()
-        self.sync_browser = sync_browser or create_sync_playwright_browser()
+        self.sync_browser = sync_browser or create_custom_sync_playwright_browser()
     
     def _run(self, selector: str, value: str, label: Optional[str] = None) -> str:
         """Run the tool to select an option from a dropdown menu.
@@ -182,7 +184,7 @@ class SubmitFormTool(BaseTool):
     def __init__(self, sync_browser=None):
         """Initialize the tool with a synchronous browser instance."""
         super().__init__()
-        self.sync_browser = sync_browser or create_sync_playwright_browser()
+        self.sync_browser = sync_browser or create_custom_sync_playwright_browser()
     
     def _run(self, selector: str) -> str:
         """Run the tool to submit a form.
@@ -219,7 +221,7 @@ def create_custom_tools(sync_browser=None):
     Returns:
         A list of custom tools
     """
-    browser = sync_browser or create_sync_playwright_browser()
+    browser = sync_browser or create_custom_sync_playwright_browser()
     
     tools = [
         FormInputTool(sync_browser=browser),

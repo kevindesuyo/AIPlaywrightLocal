@@ -2,7 +2,6 @@ import os
 from typing import List, Optional
 
 from langchain.tools.base import BaseTool
-from langchain_community.tools.playwright.utils import create_sync_playwright_browser
 from langchain_community.tools.playwright.click import ClickTool
 from langchain_community.tools.playwright.current_page import CurrentWebPageTool
 from langchain_community.tools.playwright.extract_hyperlinks import ExtractHyperlinksTool
@@ -11,13 +10,17 @@ from langchain_community.tools.playwright.get_elements import GetElementsTool
 from langchain_community.tools.playwright.navigate import NavigateTool
 from langchain_community.tools.playwright.navigate_back import NavigateBackTool
 
+# カスタムユーティリティをインポート
+from .playwright_utils import create_custom_sync_playwright_browser, get_current_page
+
 def create_playwright_toolkit() -> List[BaseTool]:
     """Create a toolkit of Playwright tools for browser automation.
     
     Returns:
         List[BaseTool]: A list of Playwright tools for browser automation.
     """
-    sync_browser = create_sync_playwright_browser()
+    # カスタムブラウザを使用
+    sync_browser = create_custom_sync_playwright_browser(headless=True, slow_mo=50)
     
     tools = [
         NavigateTool(sync_browser=sync_browser),
