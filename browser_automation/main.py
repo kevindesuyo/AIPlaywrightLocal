@@ -14,7 +14,11 @@ def check_environment():
     if not hasattr(sys, 'real_prefix') and not (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
         print("Warning: Virtual environment is not activated.")
         print("Please activate the virtual environment before running the app.")
-        print("Run: source venv/bin/activate")
+        
+        if sys.platform == "win32":
+            print("Run: venv\\Scripts\\activate")
+        else:  # Unix-like systems (Linux, macOS)
+            print("Run: source venv/bin/activate")
         return False
     
     try:
