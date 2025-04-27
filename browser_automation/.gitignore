@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.env
+
+# Playwright
+node_modules/
+.cache/
+.pytest_cache/
+playwright-report/
+test-results/
+
+# Streamlit
+.streamlit/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Misc
+.DS_Store
+.idea/
+.vscode/
+*.log
+example_screenshot.png
