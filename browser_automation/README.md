@@ -1,103 +1,103 @@
-# Browser Automation Tool
+# ブラウザ自動化ツール
 
-This tool uses LangChain and Playwright to automate browser operations based on user input through a Streamlit UI.
+このツールはLangChainとPlaywrightを利用し、Streamlit UIを通じてユーザーの入力に基づくブラウザ操作を自動化します。
 
-## Features
+## 主な機能
 
-- Automate browser operations using natural language instructions
-- Execute complex browser flows like navigation, search, clicking, and content extraction
-- Custom tools for extended operations (form input, waiting for elements, etc.)
-- Simple and intuitive user interface
+- 自然言語によるブラウザ操作の自動化
+- ナビゲーション、検索、クリック、コンテンツ抽出など複雑なブラウザフローの実行
+- フォーム入力や要素待機などの拡張カスタムツール
+- シンプルで直感的なユーザーインターフェース
 
-## Installation
+## インストール方法
 
-1. Clone this repository:
+1. リポジトリをクローン:
 ```bash
 git clone <repository-url>
 cd browser-automation
 ```
 
-2. Create and activate a virtual environment:
+2. 仮想環境を作成して有効化:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windowsの場合: venv\Scripts\activate
 ```
 
-3. Install the required packages:
+3. 必要なパッケージをインストール:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Install Chromium browser for Playwright:
+4. Playwright用のChromiumブラウザをインストール:
 ```bash
 python -m playwright install chromium
 ```
 
-## Configuration
+## 設定
 
-1. Create a `.env` file in the project root directory:
+1. プロジェクトのルートディレクトリに`.env`ファイルを作成:
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-2. Replace `your_openai_api_key_here` with your actual OpenAI API key. You can get an API key from [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys).
+2. `your_openai_api_key_here`をご自身のOpenAI APIキーに置き換えてください。APIキーは[https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)から取得できます。
 
-## Usage
+## 使い方
 
-1. Run the application:
+1. アプリケーションを起動:
 ```bash
 python main.py
 ```
 
-2. Open your browser and navigate to [http://localhost:8501](http://localhost:8501).
+2. ブラウザで [http://localhost:8501](http://localhost:8501) にアクセス
 
-3. Enter your OpenAI API key if prompted.
+3. 必要に応じてOpenAI APIキーを入力
 
-4. Enter your browser operation instructions in the text area.
+4. テキストエリアにブラウザ操作指示を入力
 
-5. Click "Run Automation" to execute the instructions.
+5. 「Run Automation」をクリックして実行
 
-## Example Instructions
+## サンプル指示
 
-Here are some example instructions you can use to test the tool:
+以下はテスト用のサンプル指示です:
 
-1. **Simple Navigation and Information Extraction**:
+1. **シンプルなナビゲーションと情報抽出**:
    ```
-   Go to google.com, search for "LangChain tutorials", and tell me the title of the first result.
-   ```
-
-2. **Wikipedia Search and Summary**:
-   ```
-   Navigate to wikipedia.org, search for "Artificial Intelligence", go to the article, and summarize the first paragraph.
+   google.comにアクセスし、「LangChain tutorials」で検索し、最初の結果のタイトルを教えて。
    ```
 
-3. **News Aggregation**:
+2. **Wikipedia検索と要約**:
    ```
-   Go to news.ycombinator.com and tell me the titles of the top 5 stories.
+   wikipedia.orgに移動し、「Artificial Intelligence」で検索、記事に移動し、最初の段落を要約して。
    ```
 
-## Advanced Options
+3. **ニュース集約**:
+   ```
+   news.ycombinator.comにアクセスし、トップ5件のストーリーのタイトルを教えて。
+   ```
 
-- **Show detailed agent steps**: Toggle this option to see the detailed steps the agent takes to execute your instructions.
-- **Maximum iterations**: Set the maximum number of iterations the agent can take to complete the task.
+## 詳細オプション
 
-## Project Structure
+- **詳細なエージェントステップ表示**: エージェントが実行する詳細なステップを表示します。
+- **最大イテレーション数**: タスク完了までの最大反復回数を設定できます。
 
-- `main.py`: Main entry point for the application
-- `env_setup.py`: Environment setup utilities
-- `browser_setup.py`: Playwright browser initialization
-- `langchain_setup.py`: LangChain toolkit setup
-- `agent_setup.py`: Browser-operable agent setup
-- `custom_tools.py`: Custom tools for extended browser operations
-- `browser_flow.py`: Browser operation flow definitions
-- `streamlit_app.py`: Streamlit UI implementation
+## プロジェクト構成
 
-## Troubleshooting
+- `main.py`: アプリケーションのエントリーポイント
+- `env_setup.py`: 環境設定ユーティリティ
+- `browser_setup.py`: Playwrightブラウザ初期化
+- `langchain_setup.py`: LangChainツールキット設定
+- `agent_setup.py`: ブラウザ操作エージェント設定
+- `custom_tools.py`: 拡張ブラウザ操作用カスタムツール
+- `browser_flow.py`: ブラウザ操作フロー定義
+- `streamlit_app.py`: Streamlit UI実装
 
-- **OpenAI API Key Issues**: Ensure your API key is correctly set in the `.env` file or entered in the UI.
-- **Browser Initialization Errors**: Make sure Playwright is properly installed with `python -m playwright install chromium`.
-- **Agent Execution Errors**: Check the detailed agent steps to identify where the execution is failing.
+## トラブルシューティング
 
-## License
+- **OpenAI APIキーの問題**: `.env`ファイルやUIで正しく設定されているか確認してください。
+- **ブラウザ初期化エラー**: `python -m playwright install chromium`でPlaywrightが正しくインストールされているか確認してください。
+- **エージェント実行エラー**: 詳細なエージェントステップを確認し、どこで失敗しているか特定してください。
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## ライセンス
+
+このプロジェクトはMITライセンスで提供されています。詳細はLICENSEファイルをご覧ください。

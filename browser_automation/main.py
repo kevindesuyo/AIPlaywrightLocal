@@ -11,12 +11,15 @@ import sys
 
 def check_environment():
     """Check if the environment is properly set up."""
-    if not hasattr(sys, 'real_prefix') and not (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
-        print("Warning: Virtual environment is not activated.")
-        print("Please activate the virtual environment before running the app.")
-        print("Run: source venv/bin/activate")
+    # Python version compatibility check
+    if sys.version_info >= (3, 12):
+        print("Error: Python 3.12+ is not supported due to dependency compatibility issues. Please use Python 3.11 or earlier.")
         return False
-    
+
+    if not hasattr(sys, 'real_prefix') and not (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
+        print("Warning: Virtual environment is not activated. Make sure all dependencies are installed.")
+        # Proceed without requiring virtual environment
+     
     try:
         import streamlit
         import langchain
